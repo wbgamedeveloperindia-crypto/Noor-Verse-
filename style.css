@@ -1,0 +1,736 @@
+/* ==========================================================================
+   NOOR VERSE - CORE STYLES & VARIABLES
+   ========================================================================== */
+:root {
+    /* Brand Colors */
+    --primary-green: #0B3D2E;
+    --primary-green-hover: #082d22;
+    --soft-gold: #C19A6B;
+    --soft-gold-hover: #b08a5c;
+    
+    /* Backgrounds & Text */
+    --bg-light: #F4F7F6;
+    --card-bg: #FFFFFF;
+    --text-dark: #1F2937;
+    --text-muted: #6B7280;
+    --text-light: #F9FAFB;
+    --mushaf-bg: #FDFBF7; /* Creamy paper texture feel */
+    
+    /* Shadows & 3D Effects */
+    --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+    --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+    --shadow-3d: 0 10px 25px rgba(11, 61, 46, 0.15), 0 5px 10px rgba(0,0,0,0.05);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight on mobile */
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    height: 100vh;
+    overflow: hidden; /* Prevents body scrolling, acts like a native app */
+}
+
+/* ==========================================================================
+   HEADER & APP CONTAINER
+   ========================================================================== */
+.app-header {
+    height: 60px;
+    background-color: var(--primary-green);
+    color: var(--soft-gold);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.app-logo {
+    width: 35px;
+    height: 35px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.app-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.install-btn {
+    background: var(--soft-gold);
+    color: var(--primary-green);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.install-btn:hover {
+    background: var(--text-light);
+}
+
+#app-container {
+    height: calc(100vh - 60px);
+    overflow-y: auto; /* Allow scrolling inside the views */
+    scroll-behavior: smooth;
+}
+
+/* View Section Toggling */
+.view-section {
+    display: none;
+    flex-direction: column;
+    animation: fadeIn 0.4s ease forwards;
+    padding-bottom: 80px; /* Space for bottom menus */
+}
+
+.view-section.active-view {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Common Top Bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 90;
+}
+
+.btn-back {
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--primary-green);
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.top-bar h2 {
+    font-size: 1.2rem;
+    color: var(--primary-green);
+}
+
+/* ==========================================================================
+   VIEW 1: HOME PAGE
+   ========================================================================== */
+.welcome-banner {
+    text-align: center;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, var(--primary-green), #145a44);
+    color: var(--text-light);
+    border-bottom: 4px solid var(--soft-gold);
+}
+
+.welcome-banner h2 {
+    font-family: 'Amiri', serif; /* Good for Arabic styling if available */
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: var(--soft-gold);
+}
+
+/* Main Menu Grid */
+.main-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 20px;
+    padding: 25px 20px;
+}
+
+.menu-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 25px 15px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    box-shadow: var(--shadow-md);
+    border-bottom: 4px solid transparent;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-card:hover, .menu-card:active {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-3d);
+    border-bottom: 4px solid var(--soft-gold);
+}
+
+.card-icon {
+    font-size: 2.8rem;
+    color: var(--primary-green);
+    margin-bottom: 15px;
+    transition: var(--transition-fast);
+}
+
+.menu-card:hover .card-icon {
+    color: var(--soft-gold);
+}
+
+.menu-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.menu-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* About & Contact Section */
+.about-section {
+    background: var(--card-bg);
+    margin: 0 20px 30px;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+.section-title, .contact-title {
+    color: var(--primary-green);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--soft-gold);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.bio-container p {
+    margin-bottom: 12px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.bio-text.urdu, .bio-text.arabic {
+    font-size: 1.1rem;
+    text-align: right;
+}
+
+.contact-title {
+    margin-top: 25px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+}
+
+.contact-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-btn:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+/* Contact Button Colors */
+.whatsapp { background: #25D366; }
+.youtube { background: #FF0000; }
+.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.email { background: #EA4335; }
+.website { background: var(--primary-green); color: var(--soft-gold); }
+
+/* ==========================================================================
+   VIEW 2: QURAN INDEX
+   ========================================================================== */
+.search-container {
+    padding: 15px 20px;
+    position: relative;
+    background: var(--bg-light);
+    position: sticky;
+    top: 55px;
+    z-index: 89;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 15px 45px 15px 20px;
+    border-radius: 25px;
+    border: 2px solid #E5E7EB;
+    font-size: 1rem;
+    outline: none;
+    transition: var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.search-container input:focus {
+    border-color: var(--soft-gold);
+    box-shadow: 0 0 0 3px rgba(193, 154, 107, 0.2);
+}
+
+.search-icon {
+    position: absolute;
+    right: 35px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.surah-list {
+    padding: 10px 20px;
+}
+
+.surah-item {
+    display: flex;
+    align-items: center;
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    border-left: 4px solid transparent;
+}
+
+.surah-item:hover {
+    border-left: 4px solid var(--primary-green);
+    transform: translateX(5px);
+    box-shadow: var(--shadow-md);
+}
+
+.surah-number {
+    width: 45px;
+    height: 45px;
+    background: rgba(11, 61, 46, 0.1);
+    color: var(--primary-green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-right: 15px;
+}
+
+.surah-details {
+    flex-grow: 1;
+}
+
+.surah-details h4 {
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    margin-bottom: 3px;
+}
+
+.surah-details p {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.surah-arabic {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--primary-green);
+}
+
+/* ==========================================================================
+   VIEW 3: QURAN READER (MUSHAF) & 3D MODALS
+   ========================================================================== */
+.mushaf-container {
+    background-color: var(--mushaf-bg);
+    padding: 40px 20px;
+    min-height: calc(100vh - 120px);
+}
+
+.bismillah-header {
+    text-align: center;
+    font-family: 'Amiri', serif;
+    font-size: 2.2rem;
+    color: var(--primary-green);
+    margin-bottom: 40px;
+}
+
+.arabic-text {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 2.4rem;
+    line-height: 2.2;
+    text-align: justify;
+    text-align-last: center;
+    color: #000;
+}
+
+/* Ayah end markers inside text */
+.ayah-end {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23C19A6B" d="M50 0 L100 50 L50 100 L0 50 Z"/></svg>');
+    background-size: cover;
+    background-position: center;
+    font-size: 1rem;
+    color: var(--primary-green);
+    margin: 0 10px;
+    font-family: sans-serif;
+}
+
+.translation-area {
+    margin-top: 40px;
+    border-top: 2px dashed var(--soft-gold);
+    padding-top: 20px;
+}
+
+.translation-block {
+    margin-bottom: 25px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--primary-green);
+}
+
+.translation-block .arabic-snippet {
+    font-size: 1.8rem;
+    text-align: right;
+    margin-bottom: 10px;
+    color: var(--primary-green);
+}
+
+.translation-block .trans-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-dark);
+}
+
+/* Action Menu Fixed at Bottom */
+.action-menu-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: var(--card-bg);
+    display: flex;
+    justify-content: space-around;
+    padding: 15px 10px;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+    z-index: 100;
+    border-top: 3px solid var(--soft-gold);
+}
+
+.action-btn {
+    flex: 1;
+    margin: 0 10px;
+    padding: 14px;
+    background: var(--primary-green);
+    color: var(--soft-gold);
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition-fast);
+}
+
+.action-btn:hover, .action-btn:active {
+    background: var(--primary-green-hover);
+    transform: scale(0.98);
+}
+
+/* 3D Modals */
+.control-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(11, 61, 46, 0.7);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.control-modal:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* The actual 3D Card Effect */
+.3d-card {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+    /* 3D Shadowing */
+    box-shadow: 
+        0 20px 40px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.8),
+        inset 0 -3px 0 rgba(0,0,0,0.1);
+    transform: perspective(1000px) rotateX(-10deg) translateY(50px) scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.control-modal:not(.hidden) .3d-card {
+    transform: perspective(1000px) rotateX(0deg) translateY(0) scale(1);
+}
+
+.btn-close-modal {
+    position: absolute;
+    top: 15px; right: 15px;
+    background: none; border: none;
+    font-size: 1.5rem; color: var(--text-muted);
+    cursor: pointer;
+}
+
+.3d-card h3 {
+    text-align: center;
+    color: var(--primary-green);
+    margin-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+.range-selector, .language-selector {
+    margin-bottom: 20px;
+}
+
+.range-selector label, .language-selector label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--text-dark);
+}
+
+.range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.range-inputs input, .language-selector select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: white;
+}
+
+.audio-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.audio-btn, .primary-btn {
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    background: var(--primary-green);
+    box-shadow: var(--shadow-sm);
+}
+
+.audio-btn.stop { background: #E53E3E; }
+
+/* ==========================================================================
+   VIEW 4: QIBLA COMPASS
+   ========================================================================== */
+.qibla-container {
+    text-align: center;
+    padding: 40px 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#qibla-status-text {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    background: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-sm);
+}
+
+.compass-wrapper {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 50%;
+    box-shadow: var(--shadow-3d);
+    padding: 10px;
+    border: 5px solid var(--soft-gold);
+}
+
+.compass-dial {
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out; /* Smooth rotation */
+}
+
+.qibla-needle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4rem;
+    color: var(--primary-green);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    z-index: 10;
+    transition: transform 0.1s ease-out;
+}
+
+.qibla-info {
+    margin-top: 40px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-green);
+}
+
+/* ==========================================================================
+   VIEW 5: PRAYER TIMES
+   ========================================================================== */
+.prayer-container {
+    padding: 20px;
+}
+
+.location-header {
+    background: var(--primary-green);
+    color: white;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-md);
+}
+
+#current-location-text {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.manual-location {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.manual-location input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.manual-location button {
+    padding: 12px 20px;
+    background: var(--soft-gold);
+    color: var(--primary-green);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.date-display {
+    color: var(--soft-gold);
+    font-size: 1rem;
+}
+
+.timetable {
+    background: white;
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: var(--shadow-md);
+}
+
+.prayer-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid #F3F4F6;
+    font-size: 1.2rem;
+    color: var(--text-dark);
+    transition: var(--transition-fast);
+}
+
+.prayer-row:last-child {
+    border-bottom: none;
+}
+
+/* Highlight for the current/next prayer */
+.prayer-row.active {
+    background: linear-gradient(135deg, var(--primary-green), #145a44);
+    color: var(--soft-gold);
+    border-radius: 10px;
+    font-weight: bold;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+    border: none;
+}

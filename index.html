@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Noor Verse - The Complete Islamic Companion</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0B3D2E">
+    <link rel="apple-touch-icon" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="app-header">
+        <div class="logo-container">
+            <img src="logo.png" alt="Noor Verse Logo" class="app-logo">
+            <h1 class="app-title">Noor Verse</h1>
+        </div>
+        <button id="btn-install-app" class="install-btn hidden">
+            <i class="fas fa-download"></i> Install App
+        </button>
+    </header>
+
+    <main id="app-container">
+
+        <section id="view-home" class="view-section active-view">
+            
+            <div class="welcome-banner">
+                <h2>Bismillah ir-Rahman ir-Rahim</h2>
+                <p>Welcome to your daily Islamic companion.</p>
+            </div>
+
+            <div class="main-menu-grid">
+                <div class="menu-card" id="card-quran">
+                    <i class="fas fa-book-quran card-icon"></i>
+                    <h3>Al-Quran</h3>
+                    <p>Read, Listen & Translate</p>
+                </div>
+
+                <div class="menu-card" id="card-qibla">
+                    <i class="fas fa-kaaba card-icon"></i>
+                    <h3>Qibla Compass</h3>
+                    <p>Find the right direction</p>
+                </div>
+
+                <div class="menu-card" id="card-prayer">
+                    <i class="fas fa-clock card-icon"></i>
+                    <h3>Prayer Times</h3>
+                    <p>Daily Namaz schedule</p>
+                </div>
+
+                <a href="webquraan.pdf" target="_blank" class="menu-card" id="card-pdf">
+                    <i class="fas fa-file-pdf card-icon"></i>
+                    <h3>Read PDF</h3>
+                    <p>Offline Mushaf</p>
+                </a>
+            </div>
+
+            <div class="about-section">
+                <h3 class="section-title">About the Developer</h3>
+                
+                <div class="bio-container">
+                    <p class="bio-text english">Hello, I am <strong>Abdur Rahman Mallik</strong>, an Alim and a dedicated student. I developed Noor Verse with the pure intention of benefiting the Ummah and making it easier for everyone to connect with the Quran and their daily prayers.</p>
+                    <p class="bio-text urdu" dir="rtl">السلام علیکم، میں <strong>عبدالرحمن ملک</strong> ہوں، ایک عالم اور طالب علم۔ میں نے نور ورس کو اس خالص نیت سے بنایا ہے تاکہ امت کو فائدہ پہنچے اور سب کے لیے قرآن اور روزمرہ کی نمازوں سے جڑنا آسان ہو۔</p>
+                    <p class="bio-text arabic" dir="rtl">أهلاً بكم، أنا <strong>عبد الرحمن مالك</strong>، عالم وطالب علم. قمت بتطوير "نور فيرس" بنية خالصة لنفع الأمة وتسهيل تواصل الجميع مع القرآن الكريم وصلواتهم اليومية.</p>
+                </div>
+
+                <h4 class="contact-title">Contact Me</h4>
+                <div class="contact-grid">
+                    <a href="https://wa.me/919239529167" target="_blank" class="contact-btn whatsapp">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://youtube.com/@ayatserenity-t4i?si=t5k33A2qdxutiAIP" target="_blank" class="contact-btn youtube">
+                        <i class="fab fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://www.instagram.com/mallik.edittion?igsh=YXNwdm52OWxydnpz" target="_blank" class="contact-btn instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                    <a href="mailto:mallikabdurrahman37@gmail.com" class="contact-btn email">
+                        <i class="fas fa-envelope"></i> Email
+                    </a>
+                    <a href="https://getversaindia-star.github.io/abdurrahmanmallik.com/" target="_blank" class="contact-btn website">
+                        <i class="fas fa-globe"></i> Portfolio
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="view-quran-index" class="view-section hidden">
+            <div class="top-bar">
+                <button class="btn-back" onclick="navigateTo('view-home')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Surah Index</h2>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search-surah" placeholder="Search Surah by name, number, or Ayah...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
+            <div id="surah-list-container" class="surah-list">
+                </div>
+        </section>
+
+
+        <section id="view-quran-reader" class="view-section hidden">
+            <div class="top-bar">
+                <button class="btn-back" onclick="navigateTo('view-quran-index')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2 id="current-surah-title">Surah Name</h2>
+            </div>
+
+            <div class="mushaf-container" id="mushaf-display">
+                <div class="bismillah-header">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
+                <div id="arabic-text-container" class="arabic-text" dir="rtl"></div>
+                
+                <div id="translation-display-container" class="translation-area hidden"></div>
+            </div>
+
+            <div class="action-menu-bottom">
+                <button id="btn-open-tilawat" class="action-btn">
+                    <i class="fas fa-headphones"></i> Listen (Tilawat)
+                </button>
+                <button id="btn-open-tarjuma" class="action-btn">
+                    <i class="fas fa-language"></i> Translation
+                </button>
+            </div>
+
+            <div id="modal-tilawat" class="control-modal hidden">
+                <div class="modal-content 3d-card">
+                    <button class="btn-close-modal"><i class="fas fa-times"></i></button>
+                    <h3>Recitation Controls</h3>
+                    <div class="range-selector">
+                        <label>Select Ayah Range:</label>
+                        <div class="range-inputs">
+                            <input type="number" id="audio-start-ayah" placeholder="From" min="1">
+                            <span>to</span>
+                            <input type="number" id="audio-end-ayah" placeholder="To" min="1">
+                        </div>
+                    </div>
+                    <div class="audio-buttons">
+                        <button id="btn-play-range" class="audio-btn"><i class="fas fa-play"></i> Play Range</button>
+                        <button id="btn-play-full" class="audio-btn"><i class="fas fa-play-circle"></i> Play Full Surah</button>
+                        <button id="btn-stop-audio" class="audio-btn stop"><i class="fas fa-stop"></i> Stop</button>
+                    </div>
+                    <audio id="quran-audio-player"></audio>
+                </div>
+            </div>
+
+            <div id="modal-tarjuma" class="control-modal hidden">
+                <div class="modal-content 3d-card">
+                    <button class="btn-close-modal"><i class="fas fa-times"></i></button>
+                    <h3>Translation Settings</h3>
+                    <div class="range-selector">
+                        <label>Select Ayah Range:</label>
+                        <div class="range-inputs">
+                            <input type="number" id="trans-start-ayah" placeholder="From" min="1">
+                            <span>to</span>
+                            <input type="number" id="trans-end-ayah" placeholder="To" min="1">
+                        </div>
+                    </div>
+                    <div class="language-selector">
+                        <label>Select Language:</label>
+                        <select id="translation-language">
+                            <option value="ur.jalandhry">Urdu (اردو)</option>
+                            <option value="bn.bengali">Bengali (বাংলা)</option>
+                            <option value="en.asad">English</option>
+                        </select>
+                    </div>
+                    <button id="btn-fetch-translation" class="primary-btn">Show Translation</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="view-qibla" class="view-section hidden">
+            <div class="top-bar">
+                <button class="btn-back" onclick="navigateTo('view-home')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Qibla Direction</h2>
+            </div>
+            
+            <div class="qibla-container">
+                <p id="qibla-status-text">Calibrating compass...</p>
+                <div class="compass-wrapper">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Compass_rose_brown.svg" alt="Compass Dial" class="compass-dial" id="compass-dial">
+                    <div class="qibla-needle" id="qibla-needle">
+                        <i class="fas fa-location-arrow"></i>
+                    </div>
+                </div>
+                <div class="qibla-info">
+                    <p>Degree: <span id="qibla-degree">--</span>°</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="view-prayer" class="view-section hidden">
+            <div class="top-bar">
+                <button class="btn-back" onclick="navigateTo('view-home')">
+                    <i class="fas fa-arrow-left"></i> Back
+                </button>
+                <h2>Daily Prayer Times</h2>
+            </div>
+
+            <div class="prayer-container">
+                <div class="location-header">
+                    <p id="current-location-text"><i class="fas fa-map-marker-alt"></i> Detecting location...</p>
+                    <div class="manual-location">
+                        <input type="text" id="manual-city-input" placeholder="Or enter your city (e.g., Hooghly)">
+                        <button id="btn-search-city"><i class="fas fa-search"></i></button>
+                    </div>
+                    <p class="date-display" id="islamic-date">--</p>
+                </div>
+
+                <div class="timetable" id="prayer-timetable">
+                    <div class="prayer-row" id="row-fajr">
+                        <span class="prayer-name">Fajr</span>
+                        <span class="prayer-time" id="time-fajr">--:--</span>
+                    </div>
+                    <div class="prayer-row" id="row-sunrise">
+                        <span class="prayer-name">Sunrise</span>
+                        <span class="prayer-time" id="time-sunrise">--:--</span>
+                    </div>
+                    <div class="prayer-row" id="row-dhuhr">
+                        <span class="prayer-name">Dhuhr</span>
+                        <span class="prayer-time" id="time-dhuhr">--:--</span>
+                    </div>
+                    <div class="prayer-row" id="row-asr">
+                        <span class="prayer-name">Asr</span>
+                        <span class="prayer-time" id="time-asr">--:--</span>
+                    </div>
+                    <div class="prayer-row" id="row-maghrib">
+                        <span class="prayer-name">Maghrib</span>
+                        <span class="prayer-time" id="time-maghrib">--:--</span>
+                    </div>
+                    <div class="prayer-row" id="row-isha">
+                        <span class="prayer-name">Isha</span>
+                        <span class="prayer-time" id="time-isha">--:--</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+    
+    <script>
+        function navigateTo(viewId) {
+            // Hide all sections
+            document.querySelectorAll('.view-section').forEach(section => {
+                section.classList.remove('active-view');
+                section.classList.add('hidden');
+            });
+            // Show target section
+            document.getElementById(viewId).classList.remove('hidden');
+            document.getElementById(viewId).classList.add('active-view');
+        }
+
+        // Basic event listeners for the home menu cards
+        document.getElementById('card-quran').addEventListener('click', () => navigateTo('view-quran-index'));
+        document.getElementById('card-qibla').addEventListener('click', () => navigateTo('view-qibla'));
+        document.getElementById('card-prayer').addEventListener('click', () => navigateTo('view-prayer'));
+    </script>
+</body>
+</html>
